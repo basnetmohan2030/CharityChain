@@ -1,9 +1,46 @@
+
 import React from 'react';
 import { Navbar, Button, Hero, Card, Footer } from 'react-daisyui';
 import Logo from './assets/images/charitychain-logo2.png';
 import LogoHero from './assets/images/charitychain-logo.png';
+import React, { useState, useEffect } from 'react';
+import { Navbar, Button, Hero, Card, Footer, Modal } from 'react-daisyui';
+import { useNavigate } from 'react-router-dom';
+import { useWeb3 } from './utils/Web3Provider';
 
 const LandingPage = () => {
+  const { account, connectWallet } = useWeb3();
+  const [address, setAddress] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (account) {
+      console.log("Current Account:", account);
+      setAddress(account);
+      setIsModalOpen(true); 
+    }
+  }, [account]);
+
+  const handleConnectWallet = async () => {
+    try {
+      await connectWallet();
+    } catch (error) {
+      console.error('Error during wallet connection', error);
+    }
+  };
+
+  const handleRoleSelection = (role) => {
+    setIsModalOpen(false); // Close the modal after selection
+    console.log(`User selected role: ${role}`);
+    if (role === 'donor') {
+      navigate('/donorpage'); // Navigate to Donor Dashboard
+    } else if (role === 'charity') {
+      navigate('/charitypage'); // Navigate to Charity Creator
+    }
+  };
+
+
   return (
     <div>
       {/* Navbar */}
@@ -22,8 +59,27 @@ const LandingPage = () => {
         </Navbar.Center>
         <Navbar.End className='navbar-end'>
           <Button className="primary-btn">Sign Up</Button>
+        <Navbar.End>
+          <Button color="primary" className="rounded-full" onClick={handleConnectWallet}>Sign Up</Button>
         </Navbar.End>
       </Navbar>
+
+
+      {/* Modal for Role Selection */}
+      <Modal open={isModalOpen} onClickBackdrop={() => setIsModalOpen(false)}>
+        <Modal.Header className="font-bold">Choose Your Role</Modal.Header>
+        <Modal.Body>
+          <p className="text-lg mb-4">Please select whether you want to be a donor or a charity/campaign creator.</p>
+          <div className="flex justify-center gap-4">
+            <Button color="primary" onClick={() => handleRoleSelection('donor')}>
+              Donor
+            </Button>
+            <Button color="secondary" onClick={() => handleRoleSelection('charity')}>
+              Charity/Campaign Creator
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
 
       {/* Hero Section */}
       <Hero className="min-h-screen bg-base-200">
