@@ -1,7 +1,7 @@
 
 # CharityChain
 
-![CharityChain Logo](./charitychain/src/images/charitychain-logo.png)
+![CharityChain Logo](./charitychain/src/assets/images/charitychain-logo.png)
 
 ## Table of Contents
 - [Introduction](#introduction)

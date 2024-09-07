@@ -64,6 +64,8 @@
   background-color: #cc0055 !important;
   color: #fff !important;
   border: none;
+  padding:10px 20px 10px 20px;
+  border-radius: 10px;
 }
 .primary-btn:hover{
   background-color: #e20f67 !important;

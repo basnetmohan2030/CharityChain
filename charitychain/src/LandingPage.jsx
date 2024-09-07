@@ -1,6 +1,3 @@
-
-import React from 'react';
-import { Navbar, Button, Hero, Card, Footer } from 'react-daisyui';
 import Logo from './assets/images/charitychain-logo2.png';
 import LogoHero from './assets/images/charitychain-logo.png';
 import React, { useState, useEffect } from 'react';
@@ -11,7 +8,7 @@ import { useWeb3 } from './utils/Web3Provider';
 const LandingPage = () => {
   const { account, connectWallet } = useWeb3();
   const [address, setAddress] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,25 +54,24 @@ const LandingPage = () => {
             <li><a href="#contact">Contact</a></li>
           </ul>
         </Navbar.Center>
+
         <Navbar.End className='navbar-end'>
-          <Button className="primary-btn">Sign Up</Button>
-        <Navbar.End>
-          <Button color="primary" className="rounded-full" onClick={handleConnectWallet}>Sign Up</Button>
+          <Button className="primary-btn" onClick={handleConnectWallet}>Sign Up</Button>
         </Navbar.End>
       </Navbar>
 
 
       {/* Modal for Role Selection */}
-      <Modal open={isModalOpen} onClickBackdrop={() => setIsModalOpen(false)}>
+      <Modal className="modal-box" open={isModalOpen} onClickBackdrop={() => setIsModalOpen(false)}>
         <Modal.Header className="font-bold">Choose Your Role</Modal.Header>
         <Modal.Body>
-          <p className="text-lg mb-4">Please select whether you want to be a donor or a charity/campaign creator.</p>
+          <p className="text-lg mb-4">Do you want to register as donor or charity?</p>
           <div className="flex justify-center gap-4">
-            <Button color="primary" onClick={() => handleRoleSelection('donor')}>
+            <Button className='primary-btn' onClick={() => handleRoleSelection('donor')}>
               Donor
             </Button>
-            <Button color="secondary" onClick={() => handleRoleSelection('charity')}>
-              Charity/Campaign Creator
+            <Button className='primary-btn' onClick={() => handleRoleSelection('charity')}>
+              Organization
             </Button>
           </div>
         </Modal.Body>
