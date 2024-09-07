@@ -44,3 +44,28 @@
 .read-the-docs {
   color: #888;
 }
+
+.secondary-text{
+  color: #00cc77 !important;
+}
+
+.secondary-bg{
+  background-color: #00cc77 !important;
+}
+
+.primary-text{
+  color: #cc0055 !important;
+}
+
+.primary-bg{
+  color: #cc0055 !important;
+}
+.primary-btn{
+  background-color: #cc0055 !important;
+  color: #fff !important;
+  border: none;
+}
+.primary-btn:hover{
+  background-color: #e20f67 !important;
+  color: #fff !important;
+}
