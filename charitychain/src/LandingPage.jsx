@@ -36,6 +36,7 @@ const LandingPage = () => {
     }
   };
 
+
   return (
     <div>
       {/* Navbar */}
