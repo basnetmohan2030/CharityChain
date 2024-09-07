@@ -5,24 +5,11 @@ import CharityChain from '../abis/CharityChain.json';
 const contractAddress = "0xacb7ff1610f258aa2cffa9108b1ca44f01ad7da7"; // Replace with your contract address
 
 export const useCharityChain = (signer) => {
-
   const [contract, setContract] = useState(null);
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (signer) {
-        console.log('Signer:', signer);
-      } else {
-        console.error('Signer is not initialized');
-      }
-      
-      if (CharityChain && CharityChain.abi) {
-        console.log('ABI:', CharityChain.abi);
-      } else {
-        console.error('ABI is not defined');
-      }
-      
     if (signer) {
       const charityChainContract = new ethers.Contract(
         contractAddress,
@@ -31,10 +18,8 @@ export const useCharityChain = (signer) => {
       );
       setContract(charityChainContract);
     }
-    console.log('Signer:', signer);
-    console.log('ABI:', CharityChain.abi);
   }, [signer]);
-  
+
   const fetchCharities = async (contract) => {
     try {
       const activeCharities = await contract.listCharities();
@@ -49,7 +34,12 @@ export const useCharityChain = (signer) => {
       setLoading(false);
     }
   };
-  
+
+  useEffect(() => {
+    if (contract) {
+      fetchCharities(contract);
+    }
+  }, [contract]);
 
   const registerOrganization = async (name, registrationNo, country) => {
     try {
@@ -65,14 +55,10 @@ export const useCharityChain = (signer) => {
 
   const registerDonor = async (name, nationalID) => {
     try {
-    if (!contract) {
-        console.error('Contract is not initialized');
-        return;
-    }
+      if (!contract) return;
       const tx = await contract.registerDonor(name, nationalID);
-      await tx.wait();
-      console.log("TX hash:",tx.hash);
-      console.log('Donor registered successfully');
+      await tx.wait();      
+      console.log('Donor registered successfully',tx.hash);
     } catch (error) {
       console.error('Error registering donor:', error);
       throw error;
@@ -139,7 +125,7 @@ export const useCharityChain = (signer) => {
       return false;
     }
   };
-  
+
   return {
     charities,
     loading,

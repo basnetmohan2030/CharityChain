@@ -43,16 +43,16 @@ function DonorDashboard() {
     <div>
       {isRegistered ? (
         <div>
-          <h2>Welcome to the Donor Dashboard</h2>
-          <h3>Available Charities:</h3>
-          {charities && charities.length > 0 ? (
-            charities.map(charity => (
-              <div key={charity.id}>{charity.name}</div>
-            ))
-          ) : (
-            <p>No charities available</p>
-          )}
-        </div>
+        <h2>Welcome to the Donor Dashboard</h2>
+        <h3>Available Charities:</h3>
+        {charities.length > 0 ? (
+          charities.map(charity => (
+            <div key={charity.id}>{charity.name}</div>
+          ))
+        ) : (
+          <p>No charities available</p>
+        )}
+      </div>
       ) : (
         <div>
           <h2>Register as a Donor</h2>
