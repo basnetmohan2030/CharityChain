@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+/* import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import CharityChainABI from '../path/to/CharityChainABI.json'; // Replace with actual path
 import { CONTRACT_ADDRESS } from '../path/to/constants'; // Replace with your contract address
@@ -73,3 +73,4 @@ const CharityDashboard = () => {
 };
 
 export default CharityDashboard;
+ */

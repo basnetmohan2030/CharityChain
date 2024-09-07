@@ -1,15 +1,28 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { CharityChain } from '../abis/CharityChain.json';
+import CharityChain from '../abis/CharityChain.json';
 
-const contractAddress = "0x21d479a8d63905D2d982060b6ccE29Cd60c48EC3"; // Replace with your contract address
+const contractAddress = "0xacb7ff1610f258aa2cffa9108b1ca44f01ad7da7"; // Replace with your contract address
 
 export const useCharityChain = (signer) => {
+
   const [contract, setContract] = useState(null);
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (signer) {
+        console.log('Signer:', signer);
+      } else {
+        console.error('Signer is not initialized');
+      }
+      
+      if (CharityChain && CharityChain.abi) {
+        console.log('ABI:', CharityChain.abi);
+      } else {
+        console.error('ABI is not defined');
+      }
+      
     if (signer) {
       const charityChainContract = new ethers.Contract(
         contractAddress,
@@ -17,20 +30,26 @@ export const useCharityChain = (signer) => {
         signer
       );
       setContract(charityChainContract);
-      fetchCharities(charityChainContract);
     }
+    console.log('Signer:', signer);
+    console.log('ABI:', CharityChain.abi);
   }, [signer]);
-
+  
   const fetchCharities = async (contract) => {
     try {
       const activeCharities = await contract.listCharities();
-      setCharities(activeCharities);
+      if (Array.isArray(activeCharities)) {
+        setCharities(activeCharities);
+      } else {
+        console.error('Active charities data is not an array:', activeCharities);
+      }
     } catch (error) {
       console.error('Error fetching charities:', error);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const registerOrganization = async (name, registrationNo, country) => {
     try {
@@ -46,9 +65,13 @@ export const useCharityChain = (signer) => {
 
   const registerDonor = async (name, nationalID) => {
     try {
-      if (!contract) return;
+    if (!contract) {
+        console.error('Contract is not initialized');
+        return;
+    }
       const tx = await contract.registerDonor(name, nationalID);
       await tx.wait();
+      console.log("TX hash:",tx.hash);
       console.log('Donor registered successfully');
     } catch (error) {
       console.error('Error registering donor:', error);
@@ -106,6 +129,17 @@ export const useCharityChain = (signer) => {
     }
   };
 
+  const isDonorRegistered = async (address) => {
+    try {
+      if (!contract) return false;
+      const isRegistered = await contract.isDonorRegistered(address);
+      return isRegistered;
+    } catch (error) {
+      console.error('Error checking if donor is registered:', error);
+      return false;
+    }
+  };
+  
   return {
     charities,
     loading,
@@ -114,6 +148,7 @@ export const useCharityChain = (signer) => {
     createCharity,
     donateToCharity,
     distributeFunds,
-    closeCharity
+    closeCharity,
+    isDonorRegistered
   };
 };

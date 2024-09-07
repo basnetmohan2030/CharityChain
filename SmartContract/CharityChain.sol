@@ -183,6 +183,11 @@ contract CharityChain {
         return activeCharities;
     }
 
+    // Check if a donor is registered
+    function isDonorRegistered(address _donor) external view returns (bool) {
+        return donors[_donor].isRegistered;
+    }
+
     // Get details of a specific charity by ID
     function getCharity(uint256 _charityId) external view returns (
         string memory title,
