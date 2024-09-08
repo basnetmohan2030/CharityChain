@@ -3,6 +3,7 @@ import { useWeb3 } from '../utils/Web3Provider';
 import { useCharityChain } from '../utils/useCharityChain';
 import { Button, Input } from 'react-daisyui';
 import DonorNavbar from '../components/DonorNavbar';
+import { Link } from 'react-router-dom';
 
 function DonorDashboard() {
   const { account, signer } = useWeb3();
@@ -126,7 +127,7 @@ function DonorDashboard() {
                         </div>
                       </div>
                       <div className="card-actions justify-center mt-4">
-                        <button className="primary-btn">Donate</button>
+                        <Link to='/donation-page' className="primary-btn">Donate</Link>
                       </div>
                     </div>
                   </div>

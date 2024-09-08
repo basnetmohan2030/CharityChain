@@ -8,6 +8,7 @@ import DonationHistory from './pages/DonationHistory';
 import OrganizationDashboard from './pages/OrganizationDashboard';
 import CampaignDetail from './CampaignDetail';
 import OrgCampaignDetail from './pages/OrgCampaignDetail';
+import DonationPage from './pages/DonationPage';
 
 const AppRouter = () => {
     return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
           <Route path="/organization-dashboard" element={<OrganizationDashboard/>} />
           <Route path="/campaign-detail" element={<CampaignDetail/>} />
           <Route path="/organization-campaign" element={<OrgCampaignDetail/>} />
+          <Route path="/donation-page" element={<DonationPage/>} />
         </Routes>
       </Router>
     );
