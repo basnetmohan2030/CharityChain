@@ -71,3 +71,15 @@
   background-color: #e20f67 !important;
   color: #fff !important;
 }
+
+.secondary-btn{
+  background-color: #00cc77 !important;
+  color: #fff !important;
+  border: none;
+  padding:10px 20px 10px 20px;
+  border-radius: 10px;
+}
+.secondary-btn:hover{
+  background-color: #08ec8d !important;
+  color: #fff !important;
+}

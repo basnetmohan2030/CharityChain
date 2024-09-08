@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useWeb3 } from '../utils/Web3Provider';
 import { useCharityChain } from '../utils/useCharityChain';
 import { Button, Input } from 'react-daisyui';
-import DonorNavbar from '../components/DonorNavbar';
+import OrgNavbar from '../components/OrgNavbar';
 
-function DonorDashboard() {
+function OrganizationDashboard() {
   const { account, signer } = useWeb3();
   const { charities, loading, fetchCharities, registerDonor, isDonorRegistered, getDonorDetails } = useCharityChain(signer);
   
@@ -97,11 +97,11 @@ function DonorDashboard() {
         <div>
           <div className="min-h-screen bg-gray-100">
             {/* Navbar */}
-            <DonorNavbar></DonorNavbar>
+            <OrgNavbar></OrgNavbar>
 
             {/* Charities Section */}
             <div className="container mx-auto p-6">
-              <h2 className="text-3xl font-bold text-center mb-6">Active Campaigns</h2>
+              <h2 className="text-3xl font-bold text-center mb-6">Your Campaigns</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {charitiess.map((charity) => (
                   <div key={charity.id} className="card w-full bg-base-100 shadow-xl">
@@ -126,7 +126,7 @@ function DonorDashboard() {
                         </div>
                       </div>
                       <div className="card-actions justify-center mt-4">
-                        <button className="primary-btn">Donate</button>
+                        <button className="primary-btn">View Transactions</button>
                       </div>
                     </div>
                   </div>
@@ -174,4 +174,4 @@ function DonorDashboard() {
   );
 }
 
-export default DonorDashboard;
+export default OrganizationDashboard;

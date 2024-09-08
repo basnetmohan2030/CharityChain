@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "d3": "^7.9.0",
     "ethers": "5.4",
     "react": "^18.3.1",
     "react-daisyui": "^5.0.4",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "react-select": "^5.8.0",
+    "react-select-country-list": "^2.2.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

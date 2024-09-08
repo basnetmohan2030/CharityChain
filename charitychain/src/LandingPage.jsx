@@ -2,7 +2,7 @@ import Logo from './assets/images/charitychain-logo2.png';
 import LogoHero from './assets/images/charitychain-logo.png';
 import React, { useState, useEffect } from 'react';
 import { Navbar, Button, Hero, Card, Footer, Modal } from 'react-daisyui';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useWeb3 } from './utils/Web3Provider';
 
 const LandingPage = () => {
@@ -37,6 +37,36 @@ const LandingPage = () => {
     }
   };
 
+  const charitiess = [
+    {
+      id: 1,
+      title: "Clean Water for Rural Nepal",
+      description: "Help us provide clean and safe drinking water to remote villages in Nepal.",
+      goalAmount: "500,000 NPR",
+      thresholdAmount: "400,000 NPR",
+      raisedAmount: "120,000 NPR",
+      image: "https://vajraadventure.com/storage/blog/drinking-water-in-nepal.jpg"
+    },
+    {
+      id: 2,
+      title: "Support Schooling for Underprivileged Kids",
+      description: "Join us in the mission to provide quality education to children from low-income families.",
+      goalAmount: "300,000 NPR",
+      thresholdAmount: "200,000 NPR",
+      raisedAmount: "250,000 NPR",
+      image: "https://www.nepaltrekhub.com/wp-content/uploads/2020/01/education-support-1536x866.jpg"
+    },
+    {
+      id: 3,
+      title: "Plant Trees to Combat Climate Change",
+      description: "Join our reforestation efforts by planting trees in areas affected by deforestation.",
+      goalAmount: "250,000 NPR",
+      thresholdAmount: "180,000 NPR",
+      raisedAmount: "130,000 NPR",
+      image: "https://www.yetiwebsoft.com.np/dev/lovegreen/wp-content/uploads/2017/06/110-1.jpg"
+    }
+  ];
+
 
   return (
     <div>
@@ -51,7 +81,7 @@ const LandingPage = () => {
             <li><a href="#about">About</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#campaigns">Campaigns</a></li>
           </ul>
         </Navbar.Center>
 
@@ -144,6 +174,41 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      
+
+      <div className="p-10 secondary-bg" id="campaigns">
+        <h2 className="text-3xl font-bold text-center mb-6">Active Campaigns</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {charitiess.map((charity) => (
+            <div key={charity.id} className="card w-full bg-base-100 shadow-xl">
+                <figure>
+                  <img src={charity.image} alt={charity.name} className="w-full h-48 object-cover" />
+                </figure>
+              <div className="card-body">
+                <h2 className="card-title text-primary">{charity.title}</h2>
+                <p>{charity.description}</p>
+                <div className="text-center mt-4">
+                  <div>
+                    <span className="font-semibold">Goal: </span>
+                    {charity.goalAmount}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Threshold: </span>
+                    {charity.thresholdAmount}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Raised: </span>
+                    {charity.raisedAmount}
+                  </div>
+                </div>
+                <div className="card-actions justify-center mt-4">
+                  <Link className="primary-btn" to='/campaign-detail'>View Details</Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Call to Action */}
       <section className="p-10 secondary-bg text-white" id="cta">

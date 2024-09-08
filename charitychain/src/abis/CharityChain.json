@@ -1,565 +1,608 @@
 {
-		"abi": [
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_nepaliRupeeToken",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "charityId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "title",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "goalAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "CharityCreated",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "charityId",
-						"type": "uint256"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "donor",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "DonationReceived",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "donorAddress",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					}
-				],
-				"name": "DonorRegistered",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "charityId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "FundsDistributed",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "orgAddress",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					}
-				],
-				"name": "OrganizationRegistered",
-				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "charities",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "title",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "goalAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "thresholdAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "imageLink",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "totalCollected",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isActive",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "charityCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "checkTokenBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_charityId",
-						"type": "uint256"
-					}
-				],
-				"name": "closeCharity",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_title",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_goalAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_thresholdAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "_imageLink",
-						"type": "string"
-					},
-					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "addr",
-								"type": "address"
-							},
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							}
-						],
-						"internalType": "struct CharityChain.Recipient[]",
-						"name": "_recipients",
-						"type": "tuple[]"
-					}
-				],
-				"name": "createCharity",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_charityId",
-						"type": "uint256"
-					}
-				],
-				"name": "distributeFunds",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_charityId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
-				"name": "donateToCharity",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "donors",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "nationalID",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRegistered",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_charityId",
-						"type": "uint256"
-					}
-				],
-				"name": "getCharity",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "title",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "goalAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "thresholdAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "imageLink",
-						"type": "string"
-					},
-					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "addr",
-								"type": "address"
-							},
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							}
-						],
-						"internalType": "struct CharityChain.Recipient[]",
-						"name": "recipients",
-						"type": "tuple[]"
-					},
-					{
-						"internalType": "uint256",
-						"name": "totalCollected",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isActive",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_donor",
-						"type": "address"
-					}
-				],
-				"name": "isDonorRegistered",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "listCharities",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "title",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "description",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "goalAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "thresholdAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "imageLink",
-								"type": "string"
-							},
-							{
-								"components": [
-									{
-										"internalType": "address",
-										"name": "addr",
-										"type": "address"
-									},
-									{
-										"internalType": "string",
-										"name": "name",
-										"type": "string"
-									}
-								],
-								"internalType": "struct CharityChain.Recipient[]",
-								"name": "recipients",
-								"type": "tuple[]"
-							},
-							{
-								"internalType": "uint256",
-								"name": "totalCollected",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "isActive",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct CharityChain.Charity[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "nepaliRupeeToken",
-				"outputs": [
-					{
-						"internalType": "contract IERC20",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "organizations",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "registrationNo",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "country",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "orgAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_nationalID",
-						"type": "string"
-					}
-				],
-				"name": "registerDonor",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_registrationNo",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_country",
-						"type": "string"
-					}
-				],
-				"name": "registerOrganization",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			}
-		]
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_nepaliRupeeToken",
+					"type": "address"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "charityId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "string",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "goalAmount",
+					"type": "uint256"
+				}
+			],
+			"name": "CharityCreated",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "charityId",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "donor",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "DonationReceived",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "donorAddress",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				}
+			],
+			"name": "DonorRegistered",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "charityId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "FundsDistributed",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "orgAddress",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				}
+			],
+			"name": "OrganizationRegistered",
+			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "charities",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "goalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "thresholdAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "imageLink",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "totalCollected",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "isActive",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "charityCount",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "checkTokenBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_charityId",
+					"type": "uint256"
+				}
+			],
+			"name": "closeCharity",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_title",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "_description",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_goalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_thresholdAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "_imageLink",
+					"type": "string"
+				},
+				{
+					"components": [
+						{
+							"internalType": "address",
+							"name": "addr",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						}
+					],
+					"internalType": "struct CharityChain.Recipient[]",
+					"name": "_recipients",
+					"type": "tuple[]"
+				}
+			],
+			"name": "createCharity",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_charityId",
+					"type": "uint256"
+				}
+			],
+			"name": "distributeFunds",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_charityId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "donateToCharity",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "donors",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"internalType": "address",
+					"name": "walletAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "string",
+					"name": "nationalID",
+					"type": "string"
+				},
+				{
+					"internalType": "bool",
+					"name": "isRegistered",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_charityId",
+					"type": "uint256"
+				}
+			],
+			"name": "getCharity",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "goalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "thresholdAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "imageLink",
+					"type": "string"
+				},
+				{
+					"components": [
+						{
+							"internalType": "address",
+							"name": "addr",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						}
+					],
+					"internalType": "struct CharityChain.Recipient[]",
+					"name": "recipients",
+					"type": "tuple[]"
+				},
+				{
+					"internalType": "uint256",
+					"name": "totalCollected",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "isActive",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_donor",
+					"type": "address"
+				}
+			],
+			"name": "getDonorDetails",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				},
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_donor",
+					"type": "address"
+				}
+			],
+			"name": "isDonorRegistered",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_orgAddress",
+					"type": "address"
+				}
+			],
+			"name": "isOrganizationRegistered",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "listCharities",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "title",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "description",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "goalAmount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "thresholdAmount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "string",
+							"name": "imageLink",
+							"type": "string"
+						},
+						{
+							"components": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								},
+								{
+									"internalType": "string",
+									"name": "name",
+									"type": "string"
+								}
+							],
+							"internalType": "struct CharityChain.Recipient[]",
+							"name": "recipients",
+							"type": "tuple[]"
+						},
+						{
+							"internalType": "uint256",
+							"name": "totalCollected",
+							"type": "uint256"
+						},
+						{
+							"internalType": "bool",
+							"name": "isActive",
+							"type": "bool"
+						}
+					],
+					"internalType": "struct CharityChain.Charity[]",
+					"name": "",
+					"type": "tuple[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "nepaliRupeeToken",
+			"outputs": [
+				{
+					"internalType": "contract IERC20",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "organizations",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "registrationNo",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "country",
+					"type": "string"
+				},
+				{
+					"internalType": "address",
+					"name": "orgAddress",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "_nationalID",
+					"type": "string"
+				}
+			],
+			"name": "registerDonor",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "_registrationNo",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "_country",
+					"type": "string"
+				}
+			],
+			"name": "registerOrganization",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
 }
