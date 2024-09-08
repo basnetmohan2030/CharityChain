@@ -3,6 +3,7 @@ import { useWeb3 } from '../utils/Web3Provider';
 import { useCharityChain } from '../utils/useCharityChain';
 import { Button, Input } from 'react-daisyui';
 import OrgNavbar from '../components/OrgNavbar';
+import { Link } from 'react-router-dom';
 
 function OrganizationDashboard() {
   const { account, signer } = useWeb3();
@@ -126,7 +127,7 @@ function OrganizationDashboard() {
                         </div>
                       </div>
                       <div className="card-actions justify-center mt-4">
-                        <button className="primary-btn">View Transactions</button>
+                        <Link to='/organization-campaign' className="primary-btn">View Transactions</Link>
                       </div>
                     </div>
                   </div>

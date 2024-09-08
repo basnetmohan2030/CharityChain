@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { Navbar, Button, Card } from 'react-daisyui';
-import Logo from './assets/images/charitychain-logo2.png';
-import LogoHero from './assets/images/charitychain-logo.png';
+import Logo from '../assets/images/charitychain-logo2.png';
+import LogoHero from '../assets/images/charitychain-logo.png';
+import OrgNavbar from '../components/OrgNavbar';
 
-const CampaignDetail = () => {
+const OrgCampaignDetail = () => {
   const chartRef = useRef();
 
   const campaign = {
@@ -138,22 +139,8 @@ const CampaignDetail = () => {
 
   return (
     <div>
-      {/* Navbar */}
-      <Navbar className='navbar'>
-        <Navbar.Start className='navbar-start'>
-            <img src={Logo} alt="" height={100} width={100}/>
-          <Button className="normal-case text-xl font-extrabold">CharityChain</Button>
-        </Navbar.Start>
-        <Navbar.Center className="hidden lg:flex navbar-center">
-          <ul className="menu menu-horizontal px-1 font-semibold">
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#campaigns">Campaigns</a></li>
-          </ul>
-        </Navbar.Center>
-      </Navbar>
-      <Card className="shadow-xl p-6 mb-6 secondary-bg">
+      <OrgNavbar></OrgNavbar>
+      <Card className="shadow-xl p-6 mb-6 secondary-bg mt-3">
         <div className="flex flex-wrap justify-between">
           {/* Campaign Image */}
           <div className="w-full md:w-1/3">
@@ -179,11 +166,12 @@ const CampaignDetail = () => {
             </div>
           </div>
         </div>
+        <Button className='primary-btn mt-6'>Disburse Amount</Button>
       </Card>
 
       {/* Donation Transactions Section */}
       <Card className="shadow-xl p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">Donation Transactions</h2>
+        <h2 className="text-2xl font-bold mb-4">Collected Donations</h2>
         <table className="table w-full">
           <thead>
             <tr>
@@ -206,7 +194,7 @@ const CampaignDetail = () => {
 
       {/* Recipient Transactions Section */}
       <Card className="shadow-xl p-6">
-        <h2 className="text-2xl font-bold mb-4">Recipient Transactions</h2>
+        <h2 className="text-2xl font-bold mb-4">Distributed Amount</h2>
         <table className="table w-full">
           <thead>
             <tr>
@@ -237,4 +225,4 @@ const CampaignDetail = () => {
   );
 };
 
-export default CampaignDetail;
+export default OrgCampaignDetail;
